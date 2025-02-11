@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Card Form</title>
+</head>
+<body>
+    <h1>Student Card FORM</h1>
+    
+    <section>
+        <fieldset>
+            <legend>Personal Information</legend>
+            <label>Full Name: <input type="text" name="fullname" placeholder="Enter your full name" required></label><br>
+            <label>Email: <input type="email" name="email" placeholder="Enter your email" required></label><br>
+            <label>Password: <input type="password" name="password" placeholder="Enter a password" required></label><br>
+            <label>Age: <input type="number" name="age" min="1" required></label><br>
+            <label>Date of Birth: <input type="date" name="dob" required></label><br>
+            
+            <label>Gender:</label><br>
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+            <input type="radio" name="gender" value="Other"> Other<br>
+            
+            <label>Languages Known:</label><br>
+            <input type="checkbox" name="language" value="English"> English
+            <input type="checkbox" name="language" value="Spanish"> Spanish
+            <input type="checkbox" name="language" value="French"> French<br>
+            
+            <label>Country: 
+                <select name="country">
+                    <option>Select your country</option>
+                    <option value="USA">USA</option>
+                    <option value="Canada">Canada</option>
+                    <option value="UK">UK</option>
+                </select>
+            </label>
+        </fieldset>
+    </section>
+    
+    <section>
+        <fieldset>
+            <legend>College Subjects</legend>
+            <label>Choose subjects:</label><br>
+            <select name="subjects" multiple>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Physics">Physics</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="English">English</option>
+            </select><br>
+            <label>Rate your interest in Computer Science: 
+                <input type="range" name="interest" min="1" max="10">
+            </label>
+        </fieldset>
+    </section>
+    
+    <section>
+        <fieldset>
+            <legend>Skills Assessment</legend>
+            <label>Describe your skills:<br>
+                <textarea name="skills" placeholder="List your skills here..."></textarea>
+            </label><br>
+            <label>Upload your resume: <input type="file" name="resume"></label><br>
+            <label>Pick your favorite color: <input type="color" name="color"></label><br>
+            <label>Preferred study time: <input type="time" name="studytime"></label><br>
+            <input type="submit" value="Submit Survey">
+        </fieldset>
+    </section>
+</body>
+</html>
