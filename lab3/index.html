@@ -4,68 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Card Form</title>
+    <style>
+        #photo-preview {
+            display: none;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Student Card FORM</h1>
-    
-    <section>
+
+    <h2>Student Card Form</h2>
+
+    <form action="submit.php" method="POST" enctype="multipart/form-data">
+        <label>Full Name: <input type="text" name="full_name" required></label><br>
+        <label>Email: <input type="email" name="email" required></label><br>
+        <label>Password: <input type="password" name="password" required></label><br>
+        <label>Age: <input type="number" name="age" required></label><br>
+        <label>Date of Birth: <input type="date" name="dob" required></label><br>
+
         <fieldset>
-            <legend>Personal Information</legend>
-            <label>Full Name: <input type="text" name="fullname" placeholder="Enter your full name" required></label><br>
-            <label>Email: <input type="email" name="email" placeholder="Enter your email" required></label><br>
-            <label>Password: <input type="password" name="password" placeholder="Enter a password" required></label><br>
-            <label>Age: <input type="number" name="age" min="1" required></label><br>
-            <label>Date of Birth: <input type="date" name="dob" required></label><br>
-            
-            <label>Gender:</label><br>
-            <input type="radio" name="gender" value="Male"> Male
-            <input type="radio" name="gender" value="Female"> Female
-            <input type="radio" name="gender" value="Other"> Other<br>
-            
-            <label>Languages Known:</label><br>
-            <input type="checkbox" name="language" value="English"> English
-            <input type="checkbox" name="language" value="Spanish"> Spanish
-            <input type="checkbox" name="language" value="French"> French<br>
-            
-            <label>Country: 
-                <select name="country">
-                    <option>Select your country</option>
-                    <option value="USA">USA</option>
-                    <option value="Canada">Canada</option>
-                    <option value="UK">UK</option>
-                </select>
-            </label>
+            <legend>Gender:</legend>
+            <label><input type="radio" name="gender" value="Male" required> Male</label>
+            <label><input type="radio" name="gender" value="Female"> Female</label>
+            <label><input type="radio" name="gender" value="Other"> Other</label>
         </fieldset>
-    </section>
-    
-    <section>
+
         <fieldset>
-            <legend>College Subjects</legend>
-            <label>Choose subjects:</label><br>
-            <select name="subjects" multiple>
+            <legend>Languages Known:</legend>
+            <label><input type="checkbox" name="languages[]" value="English"> English</label>
+            <label><input type="checkbox" name="languages[]" value="Spanish"> Spanish</label>
+            <label><input type="checkbox" name="languages[]" value="French"> French</label>
+        </fieldset>
+
+        <label>Country:
+            <select name="country" required>
+                <option value="">Select your country</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="Germany">Germany</option>
+            </select>
+        </label><br>
+
+        <label>Subjects:
+            <select name="subjects[]" multiple>
                 <option value="Mathematics">Mathematics</option>
                 <option value="Computer Science">Computer Science</option>
                 <option value="Physics">Physics</option>
                 <option value="Chemistry">Chemistry</option>
                 <option value="English">English</option>
-            </select><br>
-            <label>Rate your interest in Computer Science: 
-                <input type="range" name="interest" min="1" max="10">
-            </label>
-        </fieldset>
-    </section>
-    
-    <section>
-        <fieldset>
-            <legend>Skills Assessment</legend>
-            <label>Describe your skills:<br>
-                <textarea name="skills" placeholder="List your skills here..."></textarea>
-            </label><br>
-            <label>Upload your resume: <input type="file" name="resume"></label><br>
-            <label>Pick your favorite color: <input type="color" name="color"></label><br>
-            <label>Preferred study time: <input type="time" name="studytime"></label><br>
-            <input type="submit" value="Submit Survey">
-        </fieldset>
-    </section>
+            </select>
+        </label><br>
+
+        <label>Rate Interest in Computer Science:
+            <input type="range" name="interest" min="0" max="10">
+        </label><br>
+
+        <label>Describe Skills:
+            <textarea name="skills"></textarea>
+        </label><br>
+
+        <label>Upload Resume:
+            <input type="file" name="resume" required>
+        </label><br>
+
+        <label>Upload Photo:
+            <input type="file" name="photo" accept="image/*" onchange="previewPhoto(event)">
+        </label><br>
+        <img id="photo-preview" alt="Photo Preview">
+
+        <label>Pick Your Favorite Color:
+            <input type="color" name="color">
+        </label><br>
+
+        <label>Preferred Study Time:
+            <input type="time" name="study_time">
+        </label><br>
+
+        <button type="submit">Submit Survey</button>
+    </form>
+
+    <script>
+        function previewPhoto(event) {
+            const photoPreview = document.getElementById('photo-preview');
+            const file = event.target.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    photoPreview.src = e.target.result;
+                    photoPreview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+
 </body>
 </html>
