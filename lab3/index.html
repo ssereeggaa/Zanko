@@ -6,68 +6,65 @@
     <title>Student Card Form</title>
 </head>
 <body>
-    <h1>Student card FORM</h1>
-    <form action="submit.php" method="post" enctype="multipart/form-data">
-        <section>
-            <fieldset>
-                <legend>Personal Information</legend>
-                <label>Full Name: <input type="text" name="full_name" required></label><br>
-                <label>Email: <input type="email" name="email" required></label><br>
-                <label>Password: <input type="password" name="password" required></label><br>
-                <label>Age: <input type="number" name="age" min="1" required></label><br>
-                <label>Date of Birth: <input type="date" name="dob" required></label><br>
-                <label>Gender:
-                    <input type="radio" name="gender" value="male"> Male
-                    <input type="radio" name="gender" value="female"> Female
-                    <input type="radio" name="gender" value="other"> Other
-                </label><br>
-                <label>Languages Known:
-                    <input type="checkbox" name="languages[]" value="English"> English
-                    <input type="checkbox" name="languages[]" value="Spanish"> Spanish
-                    <input type="checkbox" name="languages[]" value="French"> French
-                </label><br>
-                <label>Country: 
-                    <select name="country">
-                        <option value="">Select your country</option>
-                        <option value="ukraine">Ukraine</option>
-                        <option value="usa">USA</option>
-                        <option value="germany">Germany</option>
-                    </select>
-                </label>
-            </fieldset>
-        </section>
-        
-        <section>
-            <fieldset>
-                <legend>College Subjects</legend>
-                <label>Choose subjects: 
-                    <select name="subjects[]" multiple>
-                        <option value="math">Mathematics</option>
-                        <option value="cs">Computer Science</option>
-                        <option value="physics">Physics</option>
-                        <option value="chemistry">Chemistry</option>
-                        <option value="english">English</option>
-                    </select>
-                </label><br>
-                <label>Rate your interest in Computer Science:
-                    <input type="range" name="interest" min="1" max="10">
-                </label>
-            </fieldset>
-        </section>
-        
-        <section>
-            <fieldset>
-                <legend>Skills Assessment</legend>
-                <label>Describe your skills:<br>
-                    <textarea name="skills" rows="4" cols="50"></textarea>
-                </label><br>
-                <label>Upload your resume: <input type="file" name="resume" accept="image/*"></label><br>
-                <label>Pick your favorite color: <input type="color" name="color"></label><br>
-                <label>Preferred study time: <input type="time" name="study_time"></label>
-            </fieldset>
-        </section>
-        
+    <form action="/submit-form" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Personal Information</legend>
+            <label>Full Name: <input type="text" name="full_name" required></label><br>
+            <label>Email: <input type="email" name="email" required></label><br>
+            <label>Password: <input type="password" name="password" required></label><br>
+            <label>Age: <input type="number" name="age" required></label><br>
+            <label>Date of Birth: <input type="date" name="dob" required></label><br>
+            <label>Gender:</label>
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+            <input type="radio" name="gender" value="Other"> Other<br>
+            <label>Languages Known:</label>
+            <input type="checkbox" name="languages" value="English"> English
+            <input type="checkbox" name="languages" value="Spanish"> Spanish
+            <input type="checkbox" name="languages" value="French"> French<br>
+            <label>Country:
+                <select name="country">
+                    <option value="">Select your country</option>
+                    <option value="UA">Ukraine</option>
+                    <option value="US">USA</option>
+                </select>
+            </label>
+        </fieldset>
+        <fieldset>
+            <legend>College Subjects</legend>
+            <label>Choose subjects:</label>
+            <select name="subjects" multiple>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Physics">Physics</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="English">English</option>
+            </select><br>
+            <label>Rate your interest in Computer Science: <input type="range" name="interest" min="1" max="10"></label>
+        </fieldset>
+        <fieldset>
+            <legend>Skills Assessment</legend>
+            <label>Describe your skills:<br>
+                <textarea name="skills"></textarea>
+            </label><br>
+            <label>Upload your resume: <input type="file" name="resume" accept=".pdf,.doc,.docx"></label><br>
+            <label>Upload an image: <input type="file" name="image" accept="image/*" onchange="previewImage(event)"></label><br>
+            <img id="imagePreview" src="#" alt="Image preview will appear here" style="max-width: 200px; display: none;"><br>
+            <label>Pick your favorite color: <input type="color" name="color"></label><br>
+            <label>Preferred study time: <input type="time" name="study_time"></label>
+        </fieldset>
         <button type="submit">Submit Survey</button>
     </form>
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const img = document.getElementById('imagePreview');
+                img.src = reader.result;
+                img.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </body>
 </html>
