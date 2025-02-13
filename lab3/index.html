@@ -1,47 +1,42 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab3 - Форма студента</title>
+    <title>Student Card FORM</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
+            margin: 40px;
+            background-color: #f9f9f9;
         }
         h2 {
-            text-align: center;
+            font-size: 22px;
+            border-bottom: 2px solid black;
+            padding-bottom: 5px;
+        }
+        fieldset {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: white;
+        }
+        legend {
+            font-weight: bold;
         }
         label {
-            font-weight: bold;
             display: block;
             margin-top: 10px;
         }
-        input {
-            width: calc(100% - 16px);
-            padding: 8px;
+        input, select, textarea {
+            width: 100%;
+            padding: 5px;
             margin-top: 5px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 4px;
         }
-        #image-preview {
-            display: block;
-            width: 100%;
-            max-height: 200px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        input[type="radio"], input[type="checkbox"] {
+            width: auto;
         }
         button {
             width: 100%;
@@ -56,36 +51,103 @@
         button:hover {
             background: #218838;
         }
+        #file-preview {
+            margin-top: 10px;
+            max-width: 100%;
+            display: none;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h2>Форма студента</h2>
-        <form name="student-form" method="POST" action="/" enctype="multipart/form-data" netlify>
-            <input type="hidden" name="form-name" value="student-form">
+    <h1>Student card FORM</h1>
 
-            <label for="full-name">ПІБ:</label>
+    <form name="student-form" method="POST" action="/" enctype="multipart/form-data" netlify>
+        <input type="hidden" name="form-name" value="student-form">
+
+        <h2>Personal Information</h2>
+        <fieldset>
+            <legend>Provide your details</legend>
+
+            <label for="full-name">Full Name:</label>
             <input type="text" id="full-name" name="full-name" required>
 
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
 
-            <label for="photo">Фото студента:</label>
-            <input type="file" id="photo" name="photo" accept="image/*" required>
-            <img id="image-preview" src="#" alt="Попередній перегляд зображення" style="display: none;">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
 
-            <button type="submit">Надіслати</button>
-        </form>
-    </div>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="1">
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob">
+
+            <label>Gender:</label>
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+            <input type="radio" name="gender" value="Other"> Other
+
+            <label>Languages Known:</label>
+            <input type="checkbox" name="languages" value="English"> English
+            <input type="checkbox" name="languages" value="Spanish"> Spanish
+            <input type="checkbox" name="languages" value="French"> French
+
+            <label for="country">Country:</label>
+            <select id="country" name="country">
+                <option value="">Select your country</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="Canada">Canada</option>
+            </select>
+        </fieldset>
+
+        <h2>College Subjects</h2>
+        <fieldset>
+            <legend>Select your subjects</legend>
+            <label for="subjects">Choose subjects:</label>
+            <select id="subjects" name="subjects" multiple>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Physics">Physics</option>
+                <option value="Chemistry">Chemistry</option>
+            </select>
+
+            <label for="interest">Rate your interest in Computer Science:</label>
+            <input type="range" id="interest" name="interest" min="0" max="100">
+        </fieldset>
+
+        <h2>Skills Assessment</h2>
+        <fieldset>
+            <legend>Assess your skills</legend>
+
+            <label for="skills">Describe your skills:</label>
+            <textarea id="skills" name="skills" rows="4"></textarea>
+
+            <label for="resume">Upload your resume:</label>
+            <input type="file" id="resume" name="resume">
+            <img id="file-preview" src="#" alt="File Preview">
+
+            <label for="color">Pick your favorite color:</label>
+            <input type="color" id="color" name="color">
+
+            <label for="study-time">Preferred study time:</label>
+            <input type="time" id="study-time" name="study-time">
+        </fieldset>
+
+        <button type="submit">Submit Survey</button>
+    </form>
+
+    <p>© Student card by {your name}. All rights reserved.</p>
 
     <script>
-        document.getElementById("photo").addEventListener("change", function(event) {
+        document.getElementById("resume").addEventListener("change", function(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const imgPreview = document.getElementById("image-preview");
+                    const imgPreview = document.getElementById("file-preview");
                     imgPreview.src = e.target.result;
                     imgPreview.style.display = "block";
                 };
