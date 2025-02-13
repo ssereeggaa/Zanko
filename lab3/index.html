@@ -1,137 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Card Form</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px; /* Добавляем отступ для предотвращения перекрытия */
-            background-color: #f4f4f4;
-        }
-        form {
-            width: 100%; /* Сделать форму на всю ширину */
-            max-width: 600px; /* Ограничение по максимальной ширине */
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-        }
-        fieldset {
-            border: none;
-            margin-bottom: 15px;
-        }
-        legend {
-            font-weight: bold;
-        }
-        label {
-            display: block;
-            margin: 5px 0;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        input[type="radio"], input[type="checkbox"] {
-            width: auto;
-            margin-right: 10px;
-        }
-        .submit-btn {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px;
-            width: 100%;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-        }
-        .submit-btn:hover {
-            background-color: #218838;
-        }
-    </style>
 </head>
 <body>
-
-<form method="POST" netlify enctype="multipart/form-data">
-    <fieldset>
-        <legend>Personal Information</legend>
-        <label>Full Name:</label>
-        <input type="text" name="full_name" required>
+    <h1>Student card FORM</h1>
+    <form action="submit.php" method="post" enctype="multipart/form-data">
+        <section>
+            <fieldset>
+                <legend>Personal Information</legend>
+                <label>Full Name: <input type="text" name="full_name" required></label><br>
+                <label>Email: <input type="email" name="email" required></label><br>
+                <label>Password: <input type="password" name="password" required></label><br>
+                <label>Age: <input type="number" name="age" min="1" required></label><br>
+                <label>Date of Birth: <input type="date" name="dob" required></label><br>
+                <label>Gender:
+                    <input type="radio" name="gender" value="male"> Male
+                    <input type="radio" name="gender" value="female"> Female
+                    <input type="radio" name="gender" value="other"> Other
+                </label><br>
+                <label>Languages Known:
+                    <input type="checkbox" name="languages[]" value="English"> English
+                    <input type="checkbox" name="languages[]" value="Spanish"> Spanish
+                    <input type="checkbox" name="languages[]" value="French"> French
+                </label><br>
+                <label>Country: 
+                    <select name="country">
+                        <option value="">Select your country</option>
+                        <option value="ukraine">Ukraine</option>
+                        <option value="usa">USA</option>
+                        <option value="germany">Germany</option>
+                    </select>
+                </label>
+            </fieldset>
+        </section>
         
-        <label>Email:</label>
-        <input type="email" name="email" required>
+        <section>
+            <fieldset>
+                <legend>College Subjects</legend>
+                <label>Choose subjects: 
+                    <select name="subjects[]" multiple>
+                        <option value="math">Mathematics</option>
+                        <option value="cs">Computer Science</option>
+                        <option value="physics">Physics</option>
+                        <option value="chemistry">Chemistry</option>
+                        <option value="english">English</option>
+                    </select>
+                </label><br>
+                <label>Rate your interest in Computer Science:
+                    <input type="range" name="interest" min="1" max="10">
+                </label>
+            </fieldset>
+        </section>
         
-        <label>Password:</label>
-        <input type="password" name="password" required>
+        <section>
+            <fieldset>
+                <legend>Skills Assessment</legend>
+                <label>Describe your skills:<br>
+                    <textarea name="skills" rows="4" cols="50"></textarea>
+                </label><br>
+                <label>Upload your resume: <input type="file" name="resume" accept="image/*"></label><br>
+                <label>Pick your favorite color: <input type="color" name="color"></label><br>
+                <label>Preferred study time: <input type="time" name="study_time"></label>
+            </fieldset>
+        </section>
         
-        <label>Age:</label>
-        <input type="number" name="age" min="10" max="100">
-        
-        <label>Date of Birth:</label>
-        <input type="date" name="dob">
-    </fieldset>
-
-    <fieldset>
-        <legend>Preferences</legend>
-        
-        <label>Gender:</label>
-        <input type="radio" name="gender" value="Male"> Male
-        <input type="radio" name="gender" value="Female"> Female
-        <input type="radio" name="gender" value="Other"> Other
-        
-        <label>Languages Known:</label>
-        <input type="checkbox" name="languages" value="English"> English
-        <input type="checkbox" name="languages" value="Spanish"> Spanish
-        <input type="checkbox" name="languages" value="French"> French
-        
-        <label>Country:</label>
-        <select name="country">
-            <option value="USA">USA</option>
-            <option value="Canada">Canada</option>
-            <option value="UK">UK</option>
-        </select>
-        
-        <label>College Subjects:</label>
-        <select name="subjects" multiple>
-            <option value="Mathematics">Mathematics</option>
-            <option value="Computer Science">Computer Science</option>
-            <option value="Physics">Physics</option>
-            <option value="Chemistry">Chemistry</option>
-            <option value="English">English</option>
-        </select>
-        
-        <label>Rate Interest in Computer Science:</label>
-        <input type="range" name="interest" min="0" max="10">
-    </fieldset>
-
-    <fieldset>
-        <legend>Additional Information</legend>
-        
-        <label>Describe Skills:</label>
-        <textarea name="skills" rows="3"></textarea>
-        
-        <label>Upload Resume:</label>
-        <input type="file" name="resume" accept=".pdf,.doc,.docx">
-        
-        <label>Pick Favorite Color:</label>
-        <input type="color" name="color">
-        
-        <label>Preferred Study Time:</label>
-        <input type="time" name="study_time">
-    </fieldset>
-
-    <input type="submit" class="submit-btn" value="Submit Survey">
-</form>
-
+        <button type="submit">Submit Survey</button>
+    </form>
 </body>
 </html>
-
-
-
