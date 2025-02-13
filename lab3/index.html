@@ -3,68 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Card Form</title>
+    <title>Lab3 - Форма реєстрації студента</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, button {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        #image-preview {
+            max-width: 100%;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <form action="/submit-form" method="post" enctype="multipart/form-data">
-        <fieldset>
-            <legend>Personal Information</legend>
-            <label>Full Name: <input type="text" name="full_name" required></label><br>
-            <label>Email: <input type="email" name="email" required></label><br>
-            <label>Password: <input type="password" name="password" required></label><br>
-            <label>Age: <input type="number" name="age" required></label><br>
-            <label>Date of Birth: <input type="date" name="dob" required></label><br>
-            <label>Gender:</label>
-            <input type="radio" name="gender" value="Male"> Male
-            <input type="radio" name="gender" value="Female"> Female
-            <input type="radio" name="gender" value="Other"> Other<br>
-            <label>Languages Known:</label>
-            <input type="checkbox" name="languages" value="English"> English
-            <input type="checkbox" name="languages" value="Spanish"> Spanish
-            <input type="checkbox" name="languages" value="French"> French<br>
-            <label>Country:
-                <select name="country">
-                    <option value="">Select your country</option>
-                    <option value="UA">Ukraine</option>
-                    <option value="US">USA</option>
-                </select>
-            </label>
-        </fieldset>
-        <fieldset>
-            <legend>College Subjects</legend>
-            <label>Choose subjects:</label>
-            <select name="subjects" multiple>
-                <option value="Mathematics">Mathematics</option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Physics">Physics</option>
-                <option value="Chemistry">Chemistry</option>
-                <option value="English">English</option>
-            </select><br>
-            <label>Rate your interest in Computer Science: <input type="range" name="interest" min="1" max="10"></label>
-        </fieldset>
-        <fieldset>
-            <legend>Skills Assessment</legend>
-            <label>Describe your skills:<br>
-                <textarea name="skills"></textarea>
-            </label><br>
-            <label>Upload your resume: <input type="file" name="resume" accept=".pdf,.doc,.docx"></label><br>
-            <label>Upload an image: <input type="file" name="image" accept="image/*" onchange="previewImage(event)"></label><br>
-            <img id="imagePreview" src="#" alt="Image preview will appear here" style="max-width: 200px; display: none;"><br>
-            <label>Pick your favorite color: <input type="color" name="color"></label><br>
-            <label>Preferred study time: <input type="time" name="study_time"></label>
-        </fieldset>
-        <button type="submit">Submit Survey</button>
+
+    <h2>Форма реєстрації студента</h2>
+
+    <form name="student-card-form" method="POST" action="/" enctype="multipart/form-data" netlify>
+        <input type="hidden" name="form-name" value="student-card-form">
+
+        <label for="full-name">ПІБ:</label>
+        <input type="text" id="full-name" name="full-name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="photo">Фото студента:</label>
+        <input type="file" id="photo" name="photo" accept="image/*" required>
+        <img id="image-preview" src="#" alt="Попередній перегляд зображення" style="display: none;">
+
+        <button type="submit">Надіслати</button>
     </form>
+
     <script>
-        function previewImage(event) {
-            const reader = new FileReader();
-            reader.onload = function(){
-                const img = document.getElementById('imagePreview');
-                img.src = reader.result;
-                img.style.display = 'block';
+        document.getElementById("photo").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgPreview = document.getElementById("image-preview");
+                    imgPreview.src = e.target.result;
+                    imgPreview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
             }
-            reader.readAsDataURL(event.target.files[0]);
-        }
+        });
     </script>
+
 </body>
 </html>
