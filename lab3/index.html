@@ -7,19 +7,24 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 40px;
             background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
         }
-        h2 {
-            font-size: 22px;
-            border-bottom: 2px solid black;
-            padding-bottom: 5px;
+        .container {
+            width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
         }
         fieldset {
             border: 1px solid #ccc;
-            padding: 15px;
+            padding: 10px;
             margin-bottom: 15px;
-            background: white;
         }
         legend {
             font-weight: bold;
@@ -35,9 +40,6 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        input[type="radio"], input[type="checkbox"] {
-            width: auto;
-        }
         button {
             width: 100%;
             background: #28a745;
@@ -51,110 +53,32 @@
         button:hover {
             background: #218838;
         }
-        #file-preview {
-            margin-top: 10px;
-            max-width: 100%;
-            display: none;
-        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Student card FORM</h1>
+        <form name="student-form" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="student-form">
+            <h2>Personal Information</h2>
+            <fieldset>
+                <legend>Provide your details</legend>
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="full-name" name="full-name" required>
 
-    <h1>Student card FORM</h1>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
 
-    <form name="student-form" method="POST" action="/" enctype="multipart/form-data" netlify>
-        <input type="hidden" name="form-name" value="student-form">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
 
-        <h2>Personal Information</h2>
-        <fieldset>
-            <legend>Provide your details</legend>
-
-            <label for="full-name">Full Name:</label>
-            <input type="text" id="full-name" name="full-name" required>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age" min="1">
-
-            <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" name="dob">
-
-            <label>Gender:</label>
-            <input type="radio" name="gender" value="Male"> Male
-            <input type="radio" name="gender" value="Female"> Female
-            <input type="radio" name="gender" value="Other"> Other
-
-            <label>Languages Known:</label>
-            <input type="checkbox" name="languages" value="English"> English
-            <input type="checkbox" name="languages" value="Spanish"> Spanish
-            <input type="checkbox" name="languages" value="French"> French
-
-            <label for="country">Country:</label>
-            <select id="country" name="country">
-                <option value="">Select your country</option>
-                <option value="USA">USA</option>
-                <option value="UK">UK</option>
-                <option value="Canada">Canada</option>
-            </select>
-        </fieldset>
-
-        <h2>College Subjects</h2>
-        <fieldset>
-            <legend>Select your subjects</legend>
-            <label for="subjects">Choose subjects:</label>
-            <select id="subjects" name="subjects" multiple>
-                <option value="Mathematics">Mathematics</option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Physics">Physics</option>
-                <option value="Chemistry">Chemistry</option>
-            </select>
-
-            <label for="interest">Rate your interest in Computer Science:</label>
-            <input type="range" id="interest" name="interest" min="0" max="100">
-        </fieldset>
-
-        <h2>Skills Assessment</h2>
-        <fieldset>
-            <legend>Assess your skills</legend>
-
-            <label for="skills">Describe your skills:</label>
-            <textarea id="skills" name="skills" rows="4"></textarea>
-
-            <label for="resume">Upload your resume:</label>
-            <input type="file" id="resume" name="resume">
-            <img id="file-preview" src="#" alt="File Preview">
-
-            <label for="color">Pick your favorite color:</label>
-            <input type="color" id="color" name="color">
-
-            <label for="study-time">Preferred study time:</label>
-            <input type="time" id="study-time" name="study-time">
-        </fieldset>
-
-        <button type="submit">Submit Survey</button>
-    </form>
-
-    <p>© Student card by {your name}. All rights reserved.</p>
-
-    <script>
-        document.getElementById("resume").addEventListener("change", function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const imgPreview = document.getElementById("file-preview");
-                    imgPreview.src = e.target.result;
-                    imgPreview.style.display = "block";
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
-
+                <label>Gender:</label>
+                <input type="radio" name="gender" value="Male"> Male
+                <input type="radio" name="gender" value="Female"> Female
+                <input type="radio" name="gender" value="Other"> Other
+            </fieldset>
+            <button type="submit">Submit Survey</button>
+        </form>
+    </div>
 </body>
 </html>
