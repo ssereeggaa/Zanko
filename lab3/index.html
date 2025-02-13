@@ -3,122 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Card Form</title>
+    <title>Student Card FORM</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
         }
         .container {
-            max-width: 500px;
-            margin-top: 20px;
-            padding: 20px;
-            border: 1px solid #ccc;
+            width: 400px;
+            margin: 20px;
+            padding: 15px;
+            border: 1px solid black;
         }
         fieldset {
-            margin-bottom: 20px;
+            border: 1px solid black;
+            margin-bottom: 10px;
+        }
+        legend {
+            font-weight: bold;
         }
         input, select, textarea {
             width: 100%;
-            margin-top: 5px;
+            margin-bottom: 10px;
         }
-        img {
-            max-width: 100%;
-            margin-top: 10px;
+        .submit-btn {
+            width: auto;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Student card FORM</h2>
+        <h2><b>Student Card FORM</b></h2>
         <form id="studentForm">
             <fieldset>
                 <legend>Personal Information</legend>
-                <label>Full Name: <input type="text" name="full_name" required></label><br>
-                <label>Email: <input type="email" name="email" required></label><br>
-                <label>Password: <input type="password" name="password" required></label><br>
-                <label>Age: <input type="number" name="age"></label><br>
-                <label>Date of Birth: <input type="date" name="dob"></label><br>
-                <label>Gender:
-                    <input type="radio" name="gender" value="male"> Male
-                    <input type="radio" name="gender" value="female"> Female
-                    <input type="radio" name="gender" value="other"> Other
-                </label><br>
-                <label>Languages Known:
-                    <input type="checkbox" name="languages" value="English"> English
-                    <input type="checkbox" name="languages" value="Spanish"> Spanish
-                    <input type="checkbox" name="languages" value="French"> French
-                </label><br>
+                <label>Full Name: <input type="text" name="fullName" placeholder="Enter your full name"></label>
+                <label>Email: <input type="email" name="email" placeholder="Enter your email"></label>
+                <label>Password: <input type="password" name="password" placeholder="Enter a password"></label>
+                <label>Age: <input type="number" name="age"></label>
+                <label>Date of Birth: <input type="date" name="dob"></label>
+                <label>Gender:</label>
+                <input type="radio" name="gender" value="Male"> Male
+                <input type="radio" name="gender" value="Female"> Female
+                <input type="radio" name="gender" value="Other"> Other
+                <label>Languages Known:</label>
+                <input type="checkbox" name="languages" value="English"> English
+                <input type="checkbox" name="languages" value="Spanish"> Spanish
+                <input type="checkbox" name="languages" value="French"> French
                 <label>Country: <select name="country">
-                    <option value="">Select your country</option>
-                    <option value="USA">USA</option>
-                    <option value="Canada">Canada</option>
-                    <option value="UK">UK</option>
+                    <option>Select your country</option>
+                    <option>USA</option>
+                    <option>Canada</option>
+                    <option>UK</option>
                 </select></label>
             </fieldset>
-            
+
             <fieldset>
                 <legend>College Subjects</legend>
                 <label>Choose subjects:
                     <select name="subjects" multiple>
-                        <option value="Mathematics">Mathematics</option>
-                        <option value="Computer Science">Computer Science</option>
-                        <option value="Physics">Physics</option>
-                        <option value="Chemistry">Chemistry</option>
+                        <option>Mathematics</option>
+                        <option>Computer Science</option>
+                        <option>Physics</option>
+                        <option>Chemistry</option>
                     </select>
-                </label><br>
+                </label>
                 <label>Rate your interest in Computer Science:
-                    <input type="range" name="interest" min="0" max="10">
+                    <input type="range" name="interest" min="1" max="10">
                 </label>
             </fieldset>
-            
+
             <fieldset>
                 <legend>Skills Assessment</legend>
-                <label>Describe your skills: <textarea name="skills"></textarea></label><br>
-                <label>Upload your resume: <input type="file" name="resume"></label><br>
-                <label>Upload an image: <input type="file" id="imageUpload" accept="image/*"></label>
-                <img id="imagePreview" src="" alt="Image Preview" style="display: none;">
-                <br>
-                <label>Pick your favorite color: <input type="color" name="color"></label><br>
-                <label>Preferred study time: <input type="time" name="study_time"></label><br>
+                <label>Describe your skills:
+                    <textarea name="skills" placeholder="List your skills here..."></textarea>
+                </label>
+                <label>Upload your resume:
+                    <input type="file" name="resume">
+                </label>
+                <label>Pick your favorite color:
+                    <input type="color" name="color">
+                </label>
+                <label>Preferred study time:
+                    <input type="time" name="studyTime">
+                </label>
             </fieldset>
-            
-            <button type="submit">Submit Survey</button>
+
+            <button type="submit" class="submit-btn">Submit Survey</button>
         </form>
     </div>
-    
+
     <script>
-        document.getElementById('studentForm').addEventListener('submit', function(event) {
+        document.getElementById("studentForm").addEventListener("submit", function(event) {
             event.preventDefault();
-            const formData = new FormData(this);
-            const data = {};
+            const formData = new FormData(event.target);
+            const entries = {};
             formData.forEach((value, key) => {
-                if (data[key]) {
-                    if (!Array.isArray(data[key])) {
-                        data[key] = [data[key]];
-                    }
-                    data[key].push(value);
-                } else {
-                    data[key] = value;
-                }
+                entries[key] = value;
             });
-            console.log('Form Submitted:', data);
-        });
-        
-        document.getElementById('imageUpload').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.getElementById('imagePreview');
-                    img.src = e.target.result;
-                    img.style.display = 'block';
-                }
-                reader.readAsDataURL(file);
-            }
+            console.log("Form Submitted:", entries);
         });
     </script>
 </body>
