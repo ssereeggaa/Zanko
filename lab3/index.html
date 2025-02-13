@@ -1,107 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Card Form</title>
-    <style>
-        #photo-preview {
-            display: none;
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border: 1px solid #ccc;
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
-
-    <h2>Student Card Form</h2>
-
-    <form action="submit.php" method="POST" enctype="multipart/form-data">
-        <label>Full Name: <input type="text" name="full_name" required></label><br>
-        <label>Email: <input type="email" name="email" required></label><br>
-        <label>Password: <input type="password" name="password" required></label><br>
-        <label>Age: <input type="number" name="age" required></label><br>
-        <label>Date of Birth: <input type="date" name="dob" required></label><br>
-
-        <fieldset>
-            <legend>Gender:</legend>
-            <label><input type="radio" name="gender" value="Male" required> Male</label>
-            <label><input type="radio" name="gender" value="Female"> Female</label>
-            <label><input type="radio" name="gender" value="Other"> Other</label>
-        </fieldset>
-
-        <fieldset>
-            <legend>Languages Known:</legend>
-            <label><input type="checkbox" name="languages[]" value="English"> English</label>
-            <label><input type="checkbox" name="languages[]" value="Spanish"> Spanish</label>
-            <label><input type="checkbox" name="languages[]" value="French"> French</label>
-        </fieldset>
-
-        <label>Country:
-            <select name="country" required>
-                <option value="">Select your country</option>
-                <option value="USA">USA</option>
-                <option value="UK">UK</option>
-                <option value="Germany">Germany</option>
-            </select>
-        </label><br>
-
-        <label>Subjects:
-            <select name="subjects[]" multiple>
-                <option value="Mathematics">Mathematics</option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Physics">Physics</option>
-                <option value="Chemistry">Chemistry</option>
-                <option value="English">English</option>
-            </select>
-        </label><br>
-
-        <label>Rate Interest in Computer Science:
-            <input type="range" name="interest" min="0" max="10">
-        </label><br>
-
-        <label>Describe Skills:
-            <textarea name="skills"></textarea>
-        </label><br>
-
-        <label>Upload Resume:
-            <input type="file" name="resume" required>
-        </label><br>
-
-        <label>Upload Photo:
-            <input type="file" name="photo" accept="image/*" onchange="previewPhoto(event)">
-        </label><br>
-        <img id="photo-preview" alt="Photo Preview">
-
-        <label>Pick Your Favorite Color:
-            <input type="color" name="color">
-        </label><br>
-
-        <label>Preferred Study Time:
-            <input type="time" name="study_time">
-        </label><br>
-
-        <button type="submit">Submit Survey</button>
-    </form>
-
-    <script>
-        function previewPhoto(event) {
-            const photoPreview = document.getElementById('photo-preview');
-            const file = event.target.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    photoPreview.src = e.target.result;
-                    photoPreview.style.display = "block";
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
-
-</body>
-</html>
+<form action="https://formspree.io/f/{YOUR_FORM_ID}" method="POST" enctype="multipart/form-data">
+    <fieldset>
+      <legend>Student Card Form</legend>
+  
+      <label for="name">Ім'я:</label>
+      <input type="text" id="name" name="name" required>
+  
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+  
+      <label for="password">Пароль:</label>
+      <input type="password" id="password" name="password" required>
+  
+      <label for="age">Вік:</label>
+      <input type="number" id="age" name="age" min="1" required>
+  
+      <label for="dob">Дата народження:</label>
+      <input type="date" id="dob" name="dob" required>
+  
+      <label>Стать:</label>
+      <input type="radio" name="gender" value="Male"> Чоловіча
+      <input type="radio" name="gender" value="Female"> Жіноча
+      <input type="radio" name="gender" value="Other"> Інша
+  
+      <label>Мови, які знаєте:</label>
+      <input type="checkbox" name="languages" value="English"> Англійська
+      <input type="checkbox" name="languages" value="Spanish"> Іспанська
+      <input type="checkbox" name="languages" value="French"> Французька
+  
+      <label for="country">Країна:</label>
+      <select id="country" name="country">
+        <option value="Ukraine">Україна</option>
+        <option value="USA">США</option>
+        <option value="Germany">Німеччина</option>
+      </select>
+  
+      <label for="subjects">Предмети:</label>
+      <select id="subjects" name="subjects" multiple>
+        <option value="Math">Математика</option>
+        <option value="CS">Комп'ютерні науки</option>
+        <option value="Physics">Фізика</option>
+        <option value="Chemistry">Хімія</option>
+        <option value="English">Англійська</option>
+      </select>
+  
+      <label for="rating">Оцінка інтересу до комп'ютерних наук:</label>
+      <input type="range" id="rating" name="rating" min="1" max="10">
+  
+      <label for="skills">Опишіть свої навички:</label>
+      <textarea id="skills" name="skills"></textarea>
+  
+      <!-- Завантаження фото студента -->
+      <label for="photo">Завантажити фото:</label>
+      <input type="file" id="photo" name="photo" accept="image/*" required>
+  
+      <!-- Завантаження резюме (PDF/DOC) -->
+      <label for="resume">Завантажити резюме:</label>
+      <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+  
+      <label for="color">Улюблений колір:</label>
+      <input type="color" id="color" name="color">
+  
+      <label for="study-time">Зручний час навчання:</label>
+      <input type="time" id="study-time" name="study-time">
+  
+      <button type="submit">Відправити</button>
+    </fieldset>
+  </form>
+  
