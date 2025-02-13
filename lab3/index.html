@@ -7,79 +7,64 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
+            margin: 20px;
         }
         .container {
             width: 50%;
-            border: 1px solid #000;
+            margin: auto;
+            border: 1px solid #ccc;
             padding: 20px;
-            margin-top: 20px;
         }
-        h2 {
-            border-bottom: 1px solid #000;
-            padding-bottom: 5px;
-        }
-        input, select, textarea {
-            width: 100%;
-            margin-bottom: 10px;
+        fieldset {
+            margin-bottom: 20px;
+            padding: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Student card FORM</h1>
-        <h2>Personal Information</h2>
-        <form action="https://your-server-endpoint.com" method="POST" enctype="multipart/form-data">
-            <label>Full Name: <input type="text" name="full_name"></label>
-            <label>Email: <input type="email" name="email"></label>
-            <label>Password: <input type="password" name="password"></label>
-            <label>Age: <input type="number" name="age"></label>
-            <label>Date of Birth: <input type="date" name="dob"></label>
-            
-            <label>Gender:</label>
-            <label><input type="radio" name="gender" value="male"> Male</label>
-            <label><input type="radio" name="gender" value="female"> Female</label>
-            <label><input type="radio" name="gender" value="other"> Other</label>
-            
-            <label>Languages Known:</label>
-            <label><input type="checkbox" name="languages" value="english"> English</label>
-            <label><input type="checkbox" name="languages" value="spanish"> Spanish</label>
-            <label><input type="checkbox" name="languages" value="french"> French</label>
-            
-            <label>Country: <select name="country">
-                <option>Select your country</option>
-                <option value="usa">USA</option>
-                <option value="uk">UK</option>
-                <option value="canada">Canada</option>
-            </select></label>
-            
-            <h2>College Subjects</h2>
-            <label>Choose subjects:
-                <select name="subjects" multiple>
-                    <option value="math">Mathematics</option>
-                    <option value="cs">Computer Science</option>
-                    <option value="physics">Physics</option>
-                    <option value="chemistry">Chemistry</option>
-                </select>
-            </label>
-            <label>Rate your interest in Computer Science:
-                <input type="range" name="interest" min="1" max="10">
-            </label>
-            
-            <h2>Skills Assessment</h2>
-            <label>Describe your skills:
-                <textarea name="skills"></textarea>
-            </label>
-            <label>Upload your resume: <input type="file" name="resume"></label>
-            <label>Pick your favorite color: <input type="color" name="color"></label>
-            <label>Preferred study time: <input type="time" name="study_time"></label>
-            
-            <button type="submit">Submit Survey</button>
+        <h2>Student card FORM</h2>
+        <form id="studentForm">
+            <fieldset>
+                <legend>Personal Information</legend>
+                <label>Full Name: <input type="text" name="fullname" required></label><br>
+                <label>Email: <input type="email" name="email" required></label><br>
+                <label>Password: <input type="password" name="password" required></label><br>
+                <label>Age: <input type="number" name="age"></label><br>
+                <label>Date of Birth: <input type="date" name="dob"></label><br>
+            </fieldset>
+            <fieldset>
+                <legend>College Subjects</legend>
+                <label>Choose subjects:
+                    <select name="subjects" multiple>
+                        <option>Mathematics</option>
+                        <option>Computer Science</option>
+                        <option>Physics</option>
+                        <option>Chemistry</option>
+                    </select>
+                </label>
+            </fieldset>
+            <fieldset>
+                <legend>Skills Assessment</legend>
+                <label>Describe your skills:<br>
+                    <textarea name="skills"></textarea>
+                </label><br>
+                <label>Upload your resume: <input type="file" name="resume"></label><br>
+                <label>Pick your favorite color: <input type="color" name="color"></label><br>
+                <button type="submit">Submit Survey</button>
+            </fieldset>
         </form>
-        <p>&copy; Student card by {your name}. All rights reserved.</p>
     </div>
+    
+    <script>
+        document.getElementById("studentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const formObject = {};
+            formData.forEach((value, key) => { formObject[key] = value; });
+            console.log("Form Submitted:", formObject);
+            alert("Form data submitted! Check DevTools (F12) Console");
+        });
+    </script>
 </body>
 </html>
