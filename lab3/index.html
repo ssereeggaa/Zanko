@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Card FORM</title>
+    <title>Форма студента</title>
     <style>
         body {
             font-family: Arial, sans-serif;
         }
         .container {
             width: 400px;
-            margin: 20px;
+            margin: 20px auto;
             padding: 15px;
             border: 1px solid black;
         }
@@ -33,90 +33,79 @@
             margin-top: 10px;
             display: none;
         }
+        .response-container {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2><b>Student Card FORM</b></h2>
-        <form id="studentForm" action="https://httpbin.org/post" method="post" enctype="multipart/form-data">
+        <h2><b>Форма студента</b></h2>
+        <form id="studentForm" enctype="multipart/form-data" method="post">
             <fieldset>
-                <legend>Personal Information</legend>
-                <label>Full Name: <input type="text" name="fullName" placeholder="Enter your full name"></label>
-                <label>Email: <input type="email" name="email" placeholder="Enter your email"></label>
-                <label>Password: <input type="password" name="password" placeholder="Enter a password"></label>
-                <label>Age: <input type="number" name="age"></label>
-                <label>Date of Birth: <input type="date" name="dob"></label>
-                <label>Gender:</label>
-                <input type="radio" name="gender" value="Male"> Male
-                <input type="radio" name="gender" value="Female"> Female
-                <input type="radio" name="gender" value="Other"> Other
-                <label>Languages Known:</label>
-                <input type="checkbox" name="languages" value="English"> English
-                <input type="checkbox" name="languages" value="Spanish"> Spanish
-                <input type="checkbox" name="languages" value="French"> French
-                <label>Country: 
-                    <select name="country">
-                        <option>Select your country</option>
-                        <option>USA</option>
-                        <option>Canada</option>
-                        <option>UK</option>
-                    </select>
-                </label>
+                <legend>Персональні дані</legend>
+                <label>ПІБ: <input type="text" name="fullName" placeholder="Введіть ваше ім'я" required></label>
+                <label>Email: <input type="email" name="email" placeholder="Введіть email" required></label>
+                <label>Пароль: <input type="password" name="password" placeholder="Введіть пароль" required></label>
+                <label>Вік: <input type="number" name="age"></label>
+                <label>Дата народження: <input type="date" name="dob"></label>
             </fieldset>
 
             <fieldset>
-                <legend>College Subjects</legend>
-                <label>Choose subjects:
+                <legend>Навчання</legend>
+                <label>Виберіть предмети:
                     <select name="subjects" multiple>
-                        <option>Mathematics</option>
-                        <option>Computer Science</option>
-                        <option>Physics</option>
-                        <option>Chemistry</option>
+                        <option>Математика</option>
+                        <option>Програмування</option>
+                        <option>Фізика</option>
+                        <option>Хімія</option>
                     </select>
                 </label>
-                <label>Rate your interest in Computer Science:
-                    <input type="range" name="interest" min="1" max="10">
+                <label>Завантажте фото:
+                    <input type="file" name="photo" id="photoInput">
                 </label>
+                <img id="previewImage" src="" alt="Попередній перегляд зображення">
             </fieldset>
 
-            <fieldset>
-                <legend>Skills Assessment</legend>
-                <label>Describe your skills:
-                    <textarea name="skills" placeholder="List your skills here..."></textarea>
-                </label>
-                <label>Upload your resume:
-                    <input type="file" name="resume">
-                </label>
-                <label>Pick your favorite color:
-                    <input type="color" name="color">
-                </label>
-                <label>Preferred study time:
-                    <input type="time" name="studyTime">
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>Upload an Image</legend>
-                <label>Choose an image:
-                    <input type="file" name="image" id="imageInput" accept="image/*">
-                </label>
-                <br>
-                <img id="previewImage" src="#" alt="Uploaded Image">
-            </fieldset>
-
-            <button type="submit" class="submit-btn">Submit Survey</button>
+            <button type="submit" class="submit-btn">Надіслати</button>
         </form>
+
+        <div class="response-container" id="responseBox" style="display: none;">
+            <h3>Відповідь сервера:</h3>
+            <pre id="responseText"></pre>
+        </div>
     </div>
 
     <script>
-        document.getElementById("imageInput").addEventListener("change", function(event) {
+        document.getElementById("studentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+
+            fetch("https://httpbin.org/post", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("responseBox").style.display = "block";
+                document.getElementById("responseText").textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(error => console.error("Помилка:", error));
+        });
+
+        // Попередній перегляд зображення
+        document.getElementById("photoInput").addEventListener("change", function(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const previewImage = document.getElementById("previewImage");
-                    previewImage.src = e.target.result;
-                    previewImage.style.display = "block";
+                    const img = document.getElementById("previewImage");
+                    img.src = e.target.result;
+                    img.style.display = "block";
                 };
                 reader.readAsDataURL(file);
             }
