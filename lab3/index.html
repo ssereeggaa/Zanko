@@ -53,6 +53,8 @@
             border-radius: 5px;
             background: #f9f9f9;
             white-space: pre-wrap;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
         #preview {
             max-width: 100%;
@@ -60,6 +62,10 @@
             display: none;
             border: 1px solid black;
             padding: 5px;
+        }
+        #imageLink {
+            display: block;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -124,10 +130,22 @@
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById("serverResponse").textContent = JSON.stringify(data, null, 4);
+                let responseContainer = document.getElementById("serverResponse");
+                responseContainer.innerHTML = "<strong>Відповідь сервера:</strong><br>";
+
+                // Формуємо JSON-відповідь у красивому вигляді
+                responseContainer.innerHTML += "<pre>" + JSON.stringify(data.form, null, 4) + "</pre>";
+
+                // Якщо є файл, додаємо мініатюру і клікабельне посилання
+                if (data.files && data.files.photo) {
+                    let imageUrl = data.files.photo;
+                    let imagePreview = `<a id="imageLink" href="${imageUrl}" target="_blank">Відкрити зображення</a><br>`;
+                    imagePreview += `<img src="${imageUrl}" alt="Uploaded Image" style="max-width:100%; border:1px solid black; padding:5px;">`;
+                    responseContainer.innerHTML += imagePreview;
+                }
             })
             .catch(error => {
-                document.getElementById("serverResponse").textContent = "Error: " + error;
+                document.getElementById("serverResponse").innerHTML = "Помилка: " + error;
             });
         });
 
