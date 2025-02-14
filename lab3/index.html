@@ -3,86 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Форма студента</title>
+    <title>Student Card FORM</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 20px;
         }
         .container {
-            width: 400px;
-            margin: 20px auto;
-            padding: 15px;
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
             border: 1px solid black;
+            border-radius: 10px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
         }
         fieldset {
             border: 1px solid black;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            padding: 10px;
         }
         legend {
             font-weight: bold;
         }
+        label {
+            display: block;
+            margin: 10px 0;
+        }
         input, select, textarea {
             width: 100%;
-            margin-bottom: 10px;
+            padding: 5px;
+            margin-top: 5px;
         }
         .submit-btn {
-            width: auto;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
-        img {
-            max-width: 100%;
-            margin-top: 10px;
-            display: none;
+        .submit-btn:hover {
+            background-color: #0056b3;
         }
-        .response-container {
+        #serverResponse {
             margin-top: 20px;
             padding: 10px;
             border: 1px solid #ccc;
-            background-color: #f9f9f9;
+            border-radius: 5px;
+            background: #f9f9f9;
+            white-space: pre-wrap;
+        }
+        #preview {
+            max-width: 100%;
+            margin-top: 10px;
+            display: none;
+            border: 1px solid black;
+            padding: 5px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2><b>Форма студента</b></h2>
+        <h2>Student Card FORM</h2>
         <form id="studentForm" enctype="multipart/form-data" method="post">
             <fieldset>
-                <legend>Персональні дані</legend>
-                <label>ПІБ: <input type="text" name="fullName" placeholder="Введіть ваше ім'я" required></label>
-                <label>Email: <input type="email" name="email" placeholder="Введіть email" required></label>
-                <label>Пароль: <input type="password" name="password" placeholder="Введіть пароль" required></label>
-                <label>Вік: <input type="number" name="age"></label>
-                <label>Дата народження: <input type="date" name="dob"></label>
+                <legend>Personal Information</legend>
+                <label>Full Name: <input type="text" name="fullName" required></label>
+                <label>Email: <input type="email" name="email" required></label>
+                <label>Password: <input type="password" name="password" required></label>
+                <label>Age: <input type="number" name="age"></label>
+                <label>Date of Birth: <input type="date" name="dob"></label>
+                <label>Gender:
+                    <input type="radio" name="gender" value="Male"> Male
+                    <input type="radio" name="gender" value="Female"> Female
+                    <input type="radio" name="gender" value="Other"> Other
+                </label>
             </fieldset>
 
             <fieldset>
-                <legend>Навчання</legend>
-                <label>Виберіть предмети:
+                <legend>College Subjects</legend>
+                <label>Choose subjects:
                     <select name="subjects" multiple>
-                        <option>Математика</option>
-                        <option>Програмування</option>
-                        <option>Фізика</option>
-                        <option>Хімія</option>
+                        <option>Mathematics</option>
+                        <option>Computer Science</option>
+                        <option>Physics</option>
+                        <option>Chemistry</option>
                     </select>
                 </label>
-                <label>Завантажте фото:
-                    <input type="file" name="photo" id="photoInput">
+                <label>Rate your interest in Computer Science:
+                    <input type="range" name="interest" min="1" max="10">
                 </label>
-                <img id="previewImage" src="" alt="Попередній перегляд зображення">
             </fieldset>
 
-            <button type="submit" class="submit-btn">Надіслати</button>
+            <fieldset>
+                <legend>Skills Assessment</legend>
+                <label>Describe your skills:
+                    <textarea name="skills"></textarea>
+                </label>
+                <label>Upload your photo:
+                    <input type="file" name="photo" id="photoInput" accept="image/*">
+                </label>
+                <img id="preview" alt="Image preview">
+            </fieldset>
+
+            <button type="submit" class="submit-btn">Submit</button>
         </form>
 
-        <div class="response-container" id="responseBox" style="display: none;">
-            <h3>Відповідь сервера:</h3>
-            <pre id="responseText"></pre>
-        </div>
+        <div id="serverResponse"></div>
     </div>
 
     <script>
         document.getElementById("studentForm").addEventListener("submit", function(event) {
             event.preventDefault();
-
             const formData = new FormData(event.target);
 
             fetch("https://httpbin.org/post", {
@@ -91,21 +124,20 @@
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById("responseBox").style.display = "block";
-                document.getElementById("responseText").textContent = JSON.stringify(data, null, 2);
+                document.getElementById("serverResponse").textContent = JSON.stringify(data, null, 4);
             })
-            .catch(error => console.error("Помилка:", error));
+            .catch(error => {
+                document.getElementById("serverResponse").textContent = "Error: " + error;
+            });
         });
 
-        // Попередній перегляд зображення
         document.getElementById("photoInput").addEventListener("change", function(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const img = document.getElementById("previewImage");
-                    img.src = e.target.result;
-                    img.style.display = "block";
+                    document.getElementById("preview").src = e.target.result;
+                    document.getElementById("preview").style.display = "block";
                 };
                 reader.readAsDataURL(file);
             }
