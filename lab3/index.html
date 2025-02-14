@@ -63,9 +63,12 @@
             border: 1px solid black;
             padding: 5px;
         }
-        #imageLink {
+        #uploadedImage {
+            max-width: 100%;
             display: block;
             margin-top: 10px;
+            border: 1px solid black;
+            padding: 5px;
         }
     </style>
 </head>
@@ -117,6 +120,7 @@
         </form>
 
         <div id="serverResponse"></div>
+        <img id="uploadedImage" style="display: none;">
     </div>
 
     <script>
@@ -132,16 +136,12 @@
             .then(data => {
                 let responseContainer = document.getElementById("serverResponse");
                 responseContainer.innerHTML = "<strong>Відповідь сервера:</strong><br>";
-
-                // Формуємо JSON-відповідь у красивому вигляді
                 responseContainer.innerHTML += "<pre>" + JSON.stringify(data.form, null, 4) + "</pre>";
 
-                // Якщо є файл, додаємо мініатюру і клікабельне посилання
+                // Якщо є файл, просто показуємо його
                 if (data.files && data.files.photo) {
-                    let imageUrl = data.files.photo;
-                    let imagePreview = `<a id="imageLink" href="${imageUrl}" target="_blank">Відкрити зображення</a><br>`;
-                    imagePreview += `<img src="${imageUrl}" alt="Uploaded Image" style="max-width:100%; border:1px solid black; padding:5px;">`;
-                    responseContainer.innerHTML += imagePreview;
+                    document.getElementById("uploadedImage").src = data.files.photo;
+                    document.getElementById("uploadedImage").style.display = "block";
                 }
             })
             .catch(error => {
