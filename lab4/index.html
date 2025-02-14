@@ -3,53 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Лабораторна 4</title>
+    <title>Лабораторна 4 - IT Коледж</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>IT Коледж Львів</h1>
+        <h1><a href="https://www.youtube.com/@itcollegelviv" target="_blank">Підписуйтесь на канал ІТ Коледжу, щоб дізнаватися більше про навчання та освітні програми!</a></h1>
+        <img src="logo-lit.jpg" alt="Логотип IT Коледжу" height="300">
+        <button class="subscribe-button" onclick="window.open('https://www.youtube.com/@itcollegelviv', '_blank')">Підписатися</button>
     </header>
+    
     <main>
         <section>
-            <img src="logo-lit.jpg" alt="Логотип IT Коледжу" height="300px">
+            <h2>Моє відео</h2>
+            <iframe width="80%" height="540" src="https://www.youtube.com/embed/Bfs4HEYxwkY" frameborder="0" allowfullscreen></iframe>
         </section>
+
         <section>
-            <p>Опис IT Коледжу</p>
-            <a href="https://www.youtube.com/@itcollegelviv" target="_blank">
-                <button>Підписатися</button>
-            </a>
-        </section>
-        <section>
-            <h2>Відео</h2>
-            <video controls width="80%" height="540px">
+            <h2>Відео IT Коледжу</h2>
+            <video width="80%" height="540" controls>
                 <source src="video1.mp4" type="video/mp4">
                 Ваш браузер не підтримує відео.
             </video>
         </section>
+        
         <section>
-            <h2>Аудіо</h2>
+            <h2>Аудіо IT Коледжу</h2>
             <audio controls>
-                <source src="videoplayback.m4a" type="audio/mp4">
+                <source src="videoplayback.m4a" type="audio/mpeg">
                 Ваш браузер не підтримує аудіо.
             </audio>
         </section>
-        <section>
-            <h2>Моє відео</h2>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/Bfs4HEYxwkY" frameborder="0" allowfullscreen></iframe>
-        </section>
+        
         <section>
             <h2>Мапа університетів та коледжів Львова</h2>
-            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=17DeAS-9nKtfcF2tn3OYxzFmo0laRSww" width="600" height="450" style="border:0;" allowfullscreen loading="lazy"></iframe>
+            <iframe width="600" height="450" src="https://www.google.com/maps/d/u/0/embed?mid=17DeAS-9nKtfcF2tn3OYxzFmo0laRSww" frameborder="0" allowfullscreen></iframe>
         </section>
+        
         <aside>
             <h2>Спеціальності та освітні програми</h2>
             <ul>
-                <li><a href="https://youtu.be/382835RQ734"><img src="https://img.youtube.com/vi/382835RQ734/0.jpg" alt="Вивчай спеціальність майбутнього"> Вивчай спеціальність майбутнього</a></li>
-                <li><a href="https://youtu.be/9oaWLWo4yZ8"><img src="https://img.youtube.com/vi/9oaWLWo4yZ8/0.jpg" alt="122 Комп’ютерні науки"> 122 Комп’ютерні науки</a></li>
-                <li><a href="https://youtu.be/5Drt8dK2GVE"><img src="https://img.youtube.com/vi/5Drt8dK2GVE/0.jpg" alt="172 Телекомунікації та радіотехніка"> 172 Телекомунікації та радіотехніка</a></li>
-                <li><a href="https://youtu.be/BLQe-gK7rMs"><img src="https://img.youtube.com/vi/BLQe-gK7rMs/0.jpg" alt="029 Інформаційна справа"> 029 Інформаційна справа</a></li>
-                <li><a href="https://youtu.be/Bfs4HEYxwkY"><img src="https://img.youtube.com/vi/Bfs4HEYxwkY/0.jpg" alt="Моє відео"> Моє відео</a></li>
+                <li><a href="https://youtu.be/382835RQ734"><img src="https://img.youtube.com/vi/382835RQ734/0.jpg" alt="Комп’ютерні науки">122 Комп’ютерні науки</a></li>
+                <li><a href="https://youtu.be/9oaWLWo4yZ8"><img src="https://img.youtube.com/vi/9oaWLWo4yZ8/0.jpg" alt="Телекомунікації та радіотехніка">172 Телекомунікації та радіотехніка</a></li>
+                <li><a href="https://youtu.be/5Drt8dK2GVE"><img src="https://img.youtube.com/vi/5Drt8dK2GVE/0.jpg" alt="Телекомунікації - Інженеринг">172 Телекомунікації - Інженеринг</a></li>
+                <li><a href="https://youtu.be/BLQe-gK7rMs"><img src="https://img.youtube.com/vi/BLQe-gK7rMs/0.jpg" alt="Інформаційна справа">029 Інформаційна справа</a></li>
             </ul>
         </aside>
     </main>
