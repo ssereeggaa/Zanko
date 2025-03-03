@@ -7,13 +7,14 @@ body {
 
 header {
     background-color: #333;
+    color: white;
     padding: 10px 0;
+    text-align: center;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
-    text-align: center;
 }
 
 nav ul li {
@@ -24,61 +25,51 @@ nav ul li {
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-weight: bold;
 }
 
-nav ul li a:hover {
-    text-decoration: underline;
+main {
+    padding: 20px;
+    text-align: center;
 }
 
 .main-news {
-    text-align: center;
+    background-color: white;
     padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.main-news h1 {
-    color: #333;
+.categories {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-.main-news img {
-    width: 80%;
-    max-width: 600px;
-    margin-top: 10px;
+.category {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.category img {
+    max-width: 200px;
+    border-radius: 8px;
+}
+
+.category p {
+    font-size: 18px;
+    font-weight: bold;
 }
 
 footer {
-    text-align: center;
-    padding: 10px;
     background-color: #333;
     color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-/* Стилі для модального вікна */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-    background-color: white;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 60%;
     text-align: center;
-}
-
-.close {
-    float: right;
-    font-size: 28px;
-    cursor: pointer;
+    padding: 10px;
+    margin-top: 20px;
 }

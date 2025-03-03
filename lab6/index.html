@@ -3,40 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Новини</title>
+    <title>Новинний портал</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
 </head>
 <body>
 
     <header>
+        <h1>Новини</h1>
         <nav>
             <ul>
-                <li><a href="#" onclick="openNews('politics')">Політика</a></li>
-                <li><a href="#" onclick="openNews('sports')">Спорт</a></li>
-                <li><a href="#" onclick="openNews('technology')">Технології</a></li>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="politics.html">Політика</a></li>
+                <li><a href="sports.html">Спорт</a></li>
+                <li><a href="technology.html">Технології</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section class="main-news">
-            <h1>Головна новина: Важливий поворот подій</h1>
+            <h2>Головна новина</h2>
             <p>Світ сколихнула резонансна подія, яка змінить хід історії. Експерти аналізують наслідки, а очевидці діляться враженнями.</p>
-            <img src="img/main-news.jpg" alt="Головна новина">
         </section>
-
-        <div id="news-modal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeNews()">&times;</span>
-                <h2 id="news-title"></h2>
-                <div id="news-content"></div>
+        
+        <section class="categories">
+            <h2>Категорії новин</h2>
+            <div class="category">
+                <a href="politics.html">
+                    <img src="img/politic.jpg" alt="Політика">
+                    <p>Політика</p>
+                </a>
             </div>
-        </div>
+            <div class="category">
+                <a href="sports.html">
+                    <img src="img/sport.jpg" alt="Спорт">
+                    <p>Спорт</p>
+                </a>
+            </div>
+            <div class="category">
+                <a href="technology.html">
+                    <img src="img/tech.jpg" alt="Технології">
+                    <p>Технології</p>
+                </a>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Новини. Всі права захищені.</p>
+        <p>&copy; 2025 Новинний портал</p>
     </footer>
 
 </body>
