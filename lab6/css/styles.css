@@ -41,28 +41,29 @@ main {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.categories {
+.news-grid {
     display: flex;
     justify-content: center;
-    gap: 20px;
     flex-wrap: wrap;
+    gap: 20px;
 }
 
-.category {
+.news-item {
     background-color: white;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    width: 250px;
 }
 
-.category img {
-    max-width: 200px;
+.news-item img {
+    max-width: 100%;
     border-radius: 8px;
 }
 
-.category p {
-    font-size: 18px;
+.news-item p {
+    font-size: 16px;
     font-weight: bold;
 }
 
@@ -73,3 +74,4 @@ footer {
     padding: 10px;
     margin-top: 20px;
 }
+
