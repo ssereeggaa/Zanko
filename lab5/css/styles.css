@@ -1,0 +1,55 @@
+/* Стилі для header */
+#featured_container {
+    background: #C2C2C2;
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    padding: 20px;
+}
+
+/* Лінія перед заголовком */
+#featured_container:before {
+    display: block;
+    width: 100%;
+    content: "";
+    height: 2px;
+    background-image: linear-gradient(to right, #979797 0%, #C2C2C2 50%, #979797 100%);
+}
+
+/* Загальні стилі */
+body {
+    font-size: 1.6rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+
+/* Стилі для карток новин */
+.views-col {
+    padding: 10px;
+}
+
+.views-col a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.views-col img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+.views-col h2 {
+    font-size: 18px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Універсальні стилі */
+*, *:before, *:after {
+    box-sizing: border-box;
+}
