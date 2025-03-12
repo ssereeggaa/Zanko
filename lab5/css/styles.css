@@ -1,10 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #fff;
-    margin: 0;
-    padding: 0;
-}
-
 #featured_container {
     background: #C2C2C2;
     padding: 20px;
@@ -15,28 +8,15 @@ body {
     margin: 0 auto;
 }
 
-.news-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+.views-view-grid .row {
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
-.news-item {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.news-item:hover {
-    transform: scale(1.02);
-}
-
-.news-item a {
-    text-decoration: none;
-    color: inherit;
-    display: block;
+.views-col {
+    flex: 1;
+    min-width: 300px;
 }
 
 .img-responsive {
@@ -46,13 +26,22 @@ body {
     display: block;
 }
 
+/* Вимикаємо затемнення */
+.shadow_featured {
+    display: none;
+}
+
 h2 {
     font-size: 18px;
     color: #333;
     margin-top: 10px;
 }
 
-p {
-    font-size: 14px;
-    color: #666;
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover h2 {
+    color: #0056b3;
 }
