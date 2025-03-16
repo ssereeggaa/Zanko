@@ -2,23 +2,29 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: #f8f9fa;
 }
 
 header {
-    background-color: #e3e3e3;
-    padding: 10px;
     text-align: center;
+    background-color: #e3f2fd;
+    padding: 20px;
 }
 
 nav ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
 }
 
 nav ul li {
     display: inline;
     margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
 }
 
 main {
@@ -28,18 +34,19 @@ main {
     padding: 20px;
 }
 
-.news {
+.news-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
 }
 
 .news-item {
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
+    background: white;
+    padding: 15px;
     text-align: center;
-    transition: transform 0.3s ease-in-out;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
 }
 
 .news-item:hover {
@@ -48,46 +55,49 @@ main {
 
 .news-item img {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .headline a {
     text-decoration: none;
-    color: blue;
-    transition: background-color 0.3s ease-in-out;
+    color: #007bff;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
 .headline a:hover {
-    background-color: yellow;
+    background-color: #007bff;
+    color: white;
+    padding: 3px;
 }
 
-.sidebar {
-    background-color: #fff;
+.news-sidebar {
+    background: white;
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.sidebar ul {
+.news-sidebar ul {
     list-style: none;
     padding: 0;
 }
 
-.sidebar li {
+.news-sidebar li {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 }
 
-.sidebar img {
+.news-sidebar img {
     width: 40px;
     height: 40px;
     margin-right: 10px;
-    border-radius: 5px;
 }
 
 footer {
     text-align: center;
+    background-color: #e3f2fd;
     padding: 10px;
-    background-color: #e3e3e3;
+    margin-top: 20px;
 }
