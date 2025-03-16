@@ -13,7 +13,7 @@ body {
 
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Вирівнює меню по центру */
     align-items: center;
 }
 
@@ -32,13 +32,22 @@ body {
 .menu li a {
     color: white;
     text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease-in-out;
 }
 
-.menu-icon {
-    display: none;
-    font-size: 24px;
-    color: white;
-    cursor: pointer;
+.menu li a:hover {
+    color: yellow;
+}
+
+/* Додаємо анімацію для меню */
+.menu li {
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.menu li:hover {
+    transform: scale(1.1);
 }
 
 /* Основний контейнер */
@@ -63,6 +72,12 @@ body {
     padding: 10px;
     background-color: #f9f9f9;
     text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.news-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .news-item img {
@@ -75,6 +90,14 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.ad-item {
+    transition: transform 0.3s ease-in-out;
+}
+
+.ad-item:hover {
+    transform: scale(1.1);
 }
 
 .ad-item img {
