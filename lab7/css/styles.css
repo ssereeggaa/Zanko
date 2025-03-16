@@ -6,9 +6,9 @@ body {
 }
 
 header {
+    background-color: #eef2f7;
+    padding: 15px;
     text-align: center;
-    background-color: #e3f2fd;
-    padding: 20px;
 }
 
 nav ul {
@@ -18,7 +18,7 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin: 0 15px;
+    margin-right: 15px;
 }
 
 nav ul li a {
@@ -36,21 +36,17 @@ main {
 
 .news-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
 }
 
 .news-item {
-    background: white;
-    padding: 15px;
-    text-align: center;
+    background-color: white;
+    padding: 10px;
     border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-}
-
-.news-item:hover {
-    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
 }
 
 .news-item img {
@@ -58,46 +54,51 @@ main {
     border-radius: 8px;
 }
 
-.headline a {
-    text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
+.news-item .headline {
+    font-size: 1.2em;
+    margin: 10px 0;
     transition: background-color 0.3s;
 }
 
-.headline a:hover {
-    background-color: #007bff;
-    color: white;
-    padding: 3px;
+.news-item .headline a {
+    text-decoration: none;
+    color: #007bff;
 }
 
-.news-sidebar {
-    background: white;
+.news-item:hover {
+    transform: scale(1.05);
+}
+
+.news-item .headline:hover {
+    background-color: #dfe9f5;
+}
+
+aside {
+    background-color: white;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.news-sidebar ul {
+.sidebar-news {
     list-style: none;
     padding: 0;
 }
 
-.news-sidebar li {
+.sidebar-news li {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 }
 
-.news-sidebar img {
+.sidebar-news li img {
     width: 40px;
     height: 40px;
     margin-right: 10px;
 }
 
-footer {
-    text-align: center;
-    background-color: #e3f2fd;
-    padding: 10px;
-    margin-top: 20px;
+.sidebar-news li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #007bff;
 }
