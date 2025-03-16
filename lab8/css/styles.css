@@ -1,0 +1,134 @@
+/* Основні стилі */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Шапка сайту */
+.header {
+    background-color: #333;
+    padding: 10px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li a {
+    color: white;
+    text-decoration: none;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Основний контейнер */
+.container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Новини */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.news-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.news-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Блок реклами */
+.aside-ad {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ad-item img {
+    width: 100%;
+    height: auto;
+}
+
+/* Адаптивність */
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        background-color: #333;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        padding: 0;
+    }
+
+    .menu li {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .menu-toggle:checked + .menu-icon + .menu {
+        display: flex;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .aside-ad {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .ad-item {
+        width: 30%;
+    }
+}
