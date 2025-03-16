@@ -1,29 +1,37 @@
-body {
-    font-family: Arial, sans-serif;
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
     background-color: #f8f9fa;
 }
 
 header {
-    background-color: #eef2f7;
-    padding: 15px;
+    background-color: #007bff;
+    color: white;
     text-align: center;
+    padding: 20px;
+}
+
+nav {
+    background-color: #343a40;
+    text-align: center;
+    padding: 10px;
 }
 
 nav ul {
     list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 15px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
 }
 
 nav ul li a {
+    color: white;
     text-decoration: none;
-    color: #007bff;
     font-weight: bold;
 }
 
@@ -34,71 +42,62 @@ main {
     padding: 20px;
 }
 
-.news-container {
+.news-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
 }
 
 .news-item {
+    padding: 15px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     background-color: white;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
     text-align: center;
-    transition: transform 0.3s ease-in-out;
-}
-
-.news-item img {
-    width: 100%;
-    border-radius: 8px;
-}
-
-.news-item .headline {
-    font-size: 1.2em;
-    margin: 10px 0;
-    transition: background-color 0.3s;
-}
-
-.news-item .headline a {
-    text-decoration: none;
-    color: #007bff;
 }
 
 .news-item:hover {
     transform: scale(1.05);
 }
 
-.news-item .headline:hover {
-    background-color: #dfe9f5;
-}
-
-aside {
-    background-color: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.sidebar-news {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar-news li {
-    display: flex;
-    align-items: center;
+.news-item img {
+    width: 100%;
+    height: auto;
     margin-bottom: 10px;
 }
 
-.sidebar-news li img {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
+.news-item h2 {
+    font-size: 1.2em;
+    margin: 10px 0;
 }
 
-.sidebar-news li a {
-    text-decoration: none;
-    font-weight: bold;
-    color: #007bff;
+.aside-news {
+    display: grid;
+    gap: 15px;
+}
+
+.headline {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s;
+}
+
+.headline:hover {
+    background-color: #f1f1f1;
+}
+
+.headline img {
+    width: 50px;
+    height: 50px;
+}
+
+footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 15px;
 }
